@@ -1,34 +1,56 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
-</head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="/js/javascript.js"></script>
 
+</head>
+ 
 <body>
-  <table>
-    <tbody>
+
+  <form name="form1">
+    <table>
       <tr>
-        <td>
-          <button id="convertir">Convertir</button>
-        </td>
-        <td>
-          <p id="text1">Promedio</p>
-        </td>
-        <td>
-          <p id="text2">Promedio2</p>
-        </td>
+        <label>Tipo de Acabado ---- </label><br>
+        Estampado <input type="radio" value="Estampado" name="acabado" checked>
+        Bordado <input type="radio" value="Bordado" name="acabado"> 
       </tr>
       <tr>
-        <td>
-          <image id="original" src="https://farm6.staticflickr.com/5589/14820347476_a0d33c26d9_t.jpg"></image>
-        </td>
-        <td>
-          <canvas id="canvas1" width=140 height=140></canvas>
-        </td>
-        <td>
-          <canvas id="canvas2" width=140 height=140></canvas>
-        </td>
+        <br><br>
+        <label>Zonas</label><br>
+        Hombro Derecho<input type="radio" value="h_derecho" name="zona" checked>
+        Hombro Izquierdo<input type="radio" value="h_izquierdo" name="zona">
+        Pecho<input type="radio" value="pecho" name="zona">
+        Espalda<input type="radio" value="espalda" name="zona">
       </tr>
-    </tbody>
-  </table>
+      <tr>
+        <br><br>
+        <label>Tamaño</label>
+        <br>
+        <label id="Alto">Alto</label>
+        <input type="number" id="alto" placeholder="centimetros" required>
+        
+        <label id="Ancho">Ancho</label>
+        <input type="number" id="ancho" placeholder="centimetros" required>
+      
+      </tr>
+
+      <tr>
+        <br>
+        <br>
+        <button id="cotizar">Cotizar</button>
+      </tr>
+
+      <tr>
+        <br>
+        <br>
+        <button id="calcular_total">Calcular Total</button>
+      </tr>
+
+    </table>
+  </form>
+
+
 </body>
 </html>
