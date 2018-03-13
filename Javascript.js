@@ -1,63 +1,153 @@
+
 $(function(){
-  
-  // Obtenemos el canvas
-  var canvas1=document.getElementById("canvas1");
-  var ctx1=canvas1.getContext("2d");
 
-  // Obtenemos el canvas
-  var canvas2=document.getElementById("canvas2");
-  var ctx2=canvas2.getContext("2d");
+  var Costo_total = [0,0,0,0,0]; //[sueter, h_derecho, h_izquierdo, pecho, espalda]
 
-  // Creamos una imagen
-  var image = new Image();
-  
-  $("#convertir").click(function(){
-    // Asignamos la misma altura y ancho de la imagen al canvas
-    ctx1.canvas.height=image.height;
-    ctx1.canvas.width=image.width;
-    ctx2.canvas.height=image.height;
-    ctx2.canvas.width=image.width;
-    
-    // Dibujamos la imagen en el canvas
-    ctx1.drawImage(image,0,0);
-    ctx2.drawImage(image,0,0);
+  var Precio_estampado_xCm2 = 0.50;
+  var Precio_bordado_xCm2 = 0.70;
 
-    // Aplicamos la escala de grises
-    var imgData1=ctx1.getImageData(0,0,canvas1.width,canvas1.height);
-    var data1=imgData1.data;
+  var Tam_max_hombro_Alto = 8;
+  var Tam_max_hombro_Ancho = 7;
 
-    for(var i = 0; i < data1.length; i += 4) {
-      var grayscale= data1[i]+data1[i+1]+data1[i+2]/3;
-      data1[i]=grayscale;
-      data1[i+1]=grayscale;
-      data1[i+2]=grayscale;
+  var Tam_max_Alto = 35;
+  var Tam_max_Ancho = 30;
+
+  $("#calcular_total").click(function(){
+    var total = 0;
+    for (var i = 0; i < Costo_total.length; i++) {
+      total += Costo_total[i];
     }
-
-    // Asignamos la imagen al Canvas
-    ctx1.putImageData(imgData1,0,0);
-
-    // Aplicamos la escala de grises según el ojo humano
-    var imgData2=ctx2.getImageData(0,0,canvas2.width,canvas2.height);
-    var data2=imgData2.data;
-
-    for(var i = 0; i < data2.length; i += 4) {
-      var grayscale= 0.33*data2[i]+0.5*data2[i+1]+0.15*data2[i+2];
-      data2[i]=grayscale;
-      data2[i+1]=grayscale;
-      data2[i+2]=grayscale;
-    }
-
-    // Asignamos la imagen al Canvas
-    ctx2.putImageData(imgData2,0,0);
-
-    // Mostramos los canvas y los textos
-    $("#canvas1").fadeIn();
-    $("#text1").fadeIn();
-    $("#canvas2").fadeIn();
-    $("#text2").fadeIn();
+    console.log("precio total: "+ total);
   });
 
-  // Lectura de imagen OJO, esto puede dar error con imágenes protegidas
-  image.crossOrigin = "anonymous";
-  image.src = "https://farm6.staticflickr.com/5589/14820347476_a0d33c26d9_t.jpg";
+  $("#cotizar").click(function(){
+    var acabado = document.getElementsByName("acabado");
+    var zona = document.getElementsByName("zona");
+    var alto = document.getElementById("alto").value;
+    var ancho = document.getElementById("ancho").value; 
+
+
+    //busca las opciones seleccionada para la zona a tratar,
+    for (var i = 0; i < zona.length; i++) {
+      if (zona[i].checked) {
+        pos_zona = i+1;
+        break;
+      }
+    }
+    if (acabado[0].checked) {
+      alert(Estampados(alto,ancho,pos_zona));
+    }
+    else{
+      alert(Bordados(alto,ancho,pos_zona));
+    }
+  });
+
+
+  function valida_medidas(alto,ancho,alto_M,ancho_M){
+    if ((alto >= 5 && alto <= alto_M) && (ancho >= 5 && ancho <= alto_M)) {
+      return true;
+    }
+    return false;
+  };
+
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+  function Estampados(alto,ancho,pos_zona){
+    if (pos_zona == 1) {
+        Costo_total[pos_zona] = Estampado_Hombros(alto,ancho,"h_derecho");
+    }
+    else if (pos_zona == 2) {
+        Costo_total[pos_zona] = Estampado_Hombros(alto,ancho,"h_izquierdo");
+    }
+    else if (pos_zona == 3) {
+        Costo_total[pos_zona] = Estampado_Maximo(alto,ancho,"pecho");
+    }
+    else if (pos_zona == 4) {
+        Costo_total[pos_zona] = Estampado_Maximo(alto,ancho,"espalda");
+    }
+    return Costo_total;
+  };
+
+
+  function Estampado_Hombros(alto,ancho, hombro){
+    if (valida_medidas(alto,ancho,Tam_max_hombro_Alto,Tam_max_hombro_Ancho)) {
+
+      if (hombro == "h_derecho") {
+        return (alto*Precio_estampado_xCm2*ancho);
+      }
+      else{
+        return (alto*Precio_estampado_xCm2*ancho);
+      }
+    }
+    alert("tamaño no valido para mangas");
+    return 0;
+  };
+
+  function Estampado_Maximo(alto, ancho, parte){
+
+    if (valida_medidas(alto,ancho,Tam_max_Alto,Tam_max_Ancho)) {
+      if (parte == "pecho") {
+        console.log("pecho");
+        return (alto*Precio_estampado_xCm2*ancho);
+      }
+      else{
+        console.log("espalda");
+        return (alto*Precio_estampado_xCm2*ancho);
+      }
+    }
+    alert("tamaño no valido para pecho o espalda");
+    return 0;
+  };
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+  function Bordados(alto,ancho,pos_zona){
+    if (pos_zona == 1) {
+        Costo_total[pos_zona] = Bordado_Hombros(alto,ancho,"h_derecho");
+    }
+    else if (pos_zona == 2) {
+        Costo_total[pos_zona] = Bordado_Hombros(alto,ancho,"h_izquierdo");
+    }
+    else if (pos_zona == 3) {
+        Costo_total[pos_zona] = Bordado_Maximo(alto,ancho,"pecho");
+    }
+    else if (pos_zona == 4) {
+        Costo_total[pos_zona] = Bordado_Maximo(alto,ancho,"espalda");
+    }
+    return Costo_total;
+  };
+
+  function Bordado_Hombros(alto,ancho, hombro){
+    if (valida_medidas(alto,ancho,Tam_max_hombro_Alto,Tam_max_hombro_Ancho)) {
+      if (hombro == "h_derecho") {
+        return (alto*Precio_bordado_xCm2*ancho);
+      }
+      else{
+        return (alto*Precio_bordado_xCm2*ancho);
+      }
+    }
+    return 0;
+  };
+
+  function Bordado_Maximo(alto, ancho, parte){
+    if (valida_medidas(alto,ancho,Tam_max_Alto,Tam_max_Ancho)) {
+      if (parte == "pecho") {
+        return (alto*Precio_bordado_xCm2*ancho);
+      }
+      else{
+        return (alto*Precio_bordado_xCm2*ancho);
+      }
+    }
+    return 0;
+  };
 });
