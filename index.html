@@ -3,53 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="/js/javascript.js"></script>
+<script type="text/javascript" src="javascript.js"></script>
 
 </head>
  
 <body>
 
-  <form name="form1">
-    <table>
-      <tr>
-        <label>Tipo de Acabado ---- </label><br>
-        Estampado <input type="radio" value="Estampado" name="acabado" checked>
-        Bordado <input type="radio" value="Bordado" name="acabado"> 
-      </tr>
-      <tr>
-        <br><br>
-        <label>Zonas</label><br>
-        Hombro Derecho<input type="radio" value="h_derecho" name="zona" checked>
-        Hombro Izquierdo<input type="radio" value="h_izquierdo" name="zona">
-        Pecho<input type="radio" value="pecho" name="zona">
-        Espalda<input type="radio" value="espalda" name="zona">
-      </tr>
-      <tr>
-        <br><br>
-        <label>Tamaño</label>
-        <br>
-        <label id="Alto">Alto</label>
-        <input type="number" id="alto" placeholder="centimetros" required>
-        
-        <label id="Ancho">Ancho</label>
-        <input type="number" id="ancho" placeholder="centimetros" required>
-      
-      </tr>
+<form name="form1" action="#">
+	<label>Elegir tipo de camiseta </label>
+	<select>
+		<option>talla S - 10$</option>
+		<option>talla M - 13$</option>
+		<option>talla L - 15$</option>
+	</select>
 
-      <tr>
-        <br>
-        <br>
-        <button id="cotizar">Cotizar</button>
-      </tr>
+  <table border="1px">
 
-      <tr>
-        <br>
-        <br>
-        <button id="calcular_total">Calcular Total</button>
-      </tr>
+	<tr >
+  		<th >Estampado</th>
+  		<th> Bordado </th>
+  		<th> Posicion </th>
+  		<th>Ancho</th>
+  		<th>Alto</th>
+  		<th>Total</th>
 
-    </table>
-  </form>
+	</tr>
+
+	<tr>
+		<td >  <input type="radio" value="Estampado" name="acabado0" ></td> <td>  <input type="radio" value="Bordado" name="acabado0"> </td>
+
+	    <td>
+		Hombro Derecho 
+		</td>
+		
+		<td>
+	        <input type="number" id="alto0" placeholder="centimetros" ></td>
+
+	    <td>    <input type="number" id="ancho0" placeholder="centimetros" ></td>
+	    <td> <input type="text" id="total0" readonly="1"></td>
+
+	  	
+	</tr>
+
+	<tr>
+		<td >  <input type="radio" value="Estampado" name="acabado1" ></td> <td>  <input type="radio" value="Bordado" name="acabado1"> </td>
+
+		
+
+	    <td>
+		Hombro Izquierdo 
+		</td>
+		
+		<td>
+	        <input type="number" id="alto1" placeholder="centimetros" ></td>
+
+	    <td>    <input type="number" id="ancho1" placeholder="centimetros" ></td>
+	    <td> <input type="text" id="total1" readonly="1"></td>
+
+
+
+	  	
+	</tr>
+
+	<tr>
+		<td >  <input type="radio" value="Estampado" name="acabado2" ></td> <td>  <input type="radio" value="Bordado" name="acabado2"> </td>
+
+		
+
+	    <td>
+		Frente
+		</td>
+		
+		<td>
+	        <input type="number" id="alto2" placeholder="centimetros" ></td>
+
+	    <td>    <input type="number" id="ancho2" placeholder="centimetros" ></td>
+	    <td> <input type="text" id="total2" readonly="1"></td>
+
+	  	
+	</tr>
+		
+		<tr>
+		<td >  <input type="radio" value="Estampado" name="acabado3" ></td> <td>  <input type="radio" value="Bordado" name="acabado3"> </td>
+	    <td>
+		Espalda
+		</td>
+		
+		<td>
+	        <input type="number" id="alto3" placeholder="centimetros" ></td>
+
+	    <td>    <input type="number" id="ancho3" placeholder="centimetros" ></td>
+	    <td> <input type="text" id="total3" readonly="1"></td>
+
+	  	
+	</tr>
+
+	<tr>
+		<td colspan="5">Total General</td>
+		<td> <input type="text" id="total4" readonly="1"></td>
+	<tr>
+  </table>
+    <button id="cotizar">Calcular cotización</button>
+</form>
+
+
+
 
 
 </body>
