@@ -1,7 +1,7 @@
 
 $(function(){
 
-  var Costo_total = [0,0,0,0,0]; //[sueter, h_derecho, h_izquierdo, pecho, espalda]
+  var Costo_total = [0,0,0,0,0,0]; //[sueter, h_derecho, h_izquierdo, pecho, espalda]
 
   var Precio_estampado_xCm2 = 0.50;
   var Precio_bordado_xCm2 = 0.70;
@@ -21,25 +21,28 @@ $(function(){
   });
 
   $("#cotizar").click(function(){
-    var acabado = document.getElementsByName("acabado");
-    var zona = document.getElementsByName("zona");
-    var alto = document.getElementById("alto").value;
-    var ancho = document.getElementById("ancho").value; 
 
+    for (var i = 0; i < 4; i++) {
+      var total = 0;
+      var acabado = document.getElementsByName("acabado"+String(i));
+      var alto = document.getElementById("alto"+String(i)).value;
+      var ancho = document.getElementById("ancho"+String(i)).value;
+      var total_field = document.getElementById("total"+String(i));
 
-    //busca las opciones seleccionada para la zona a tratar,
-    for (var i = 0; i < zona.length; i++) {
-      if (zona[i].checked) {
-        pos_zona = i+1;
-        break;
+      if (acabado[0].checked) {
+        total = Estampados(alto,ancho,i+1);
+        console.log(Estampados(alto,ancho,i+1));
       }
+      else if(acabado[1].checked){
+        total = Bordados(alto,ancho,i+1);
+        console.log(Bordados(alto,ancho,i+1));
+      }
+      Costo_total[i+1] = total;
+      total_field.value = total;
+      Costo_total[5] += total;
     }
-    if (acabado[0].checked) {
-      alert(Estampados(alto,ancho,pos_zona));
-    }
-    else{
-      alert(Bordados(alto,ancho,pos_zona));
-    }
+      var total_field = document.getElementById("total4");
+      total_field.value = Costo_total[5];
   });
 
 
@@ -67,9 +70,8 @@ $(function(){
     else if (pos_zona == 4) {
         Costo_total[pos_zona] = Estampado_Maximo(alto,ancho,"espalda");
     }
-    return Costo_total;
+    return Costo_total[pos_zona];
   };
-
 
   function Estampado_Hombros(alto,ancho, hombro){
     if (valida_medidas(alto,ancho,Tam_max_hombro_Alto,Tam_max_hombro_Ancho)) {
@@ -124,7 +126,7 @@ $(function(){
     else if (pos_zona == 4) {
         Costo_total[pos_zona] = Bordado_Maximo(alto,ancho,"espalda");
     }
-    return Costo_total;
+    return Costo_total[pos_zona];
   };
 
   function Bordado_Hombros(alto,ancho, hombro){
