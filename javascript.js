@@ -3,13 +3,35 @@
 var Precio_estampado_xCm2 = 0.05;
 var Precio_bordado_xCm2 = 0.08;
 
+//tamaño minimo de estampado o bordado
+var Tam_min = 5;
+
 // centimetros maximos permitidos para el bordado o estampado en la zona del hombro
 var Tam_max_hombro_Alto = 8;
 var Tam_max_hombro_Ancho = 8;
 
 // centimetros maximos permitidos para el bordado o estampado en la zona del frente y espalda
 var Tam_max_Alto = 35;
-var Tam_max_Ancho = 35;
+var Tam_max_Ancho = 31;
+
+
+function Carga_tam(){
+
+  for (var i = 0; i < 4; i++) {
+	var placeAlto = document.getElementById("alto"+i);
+	var placeAncho = document.getElementById("ancho"+i);
+
+	if (i <= 1) {
+	  placeAlto.placeholder = "centimetros " + Tam_min + " - " +Tam_max_hombro_Alto;
+	  placeAncho.placeholder = "centimetros " + Tam_min + " - " +Tam_max_hombro_Ancho;		
+	}
+	else{
+	  placeAlto.placeholder = "centimetros " + Tam_min + " - " +Tam_max_Alto;
+	  placeAncho.placeholder = "centimetros " + Tam_min + " - " +Tam_max_Ancho;
+	}  
+  }
+
+};
 
 // funcion encargada de obtener la informacion del formulario y mostrar los resultados
 function Cotizar(){
