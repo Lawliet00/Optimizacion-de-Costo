@@ -50,7 +50,7 @@ function Cotizar(){
       var total = 0;
       var acabado1 = document.getElementById("estampado"+String(i));
       var acabado2 = document.getElementById("bordado"+String(i));
-      var alto = document.getElementById("alto"+String(i)).value;
+      var alto = document.getElementById("alto"+String(i)).value; 
       var ancho = document.getElementById("ancho"+String(i)).value;
       var total_field = document.getElementById("total"+String(i));
     
