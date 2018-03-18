@@ -128,7 +128,7 @@
 <?php 
 	if (isset($_POST['btnGuardar'])) {
 		if ($_POST['total4'] == 0.0 or $_POST['total4'] == '') {
-			echo "No se puede Guardar";
+			echo "No se puede Guardar el pedido, porque no se a calculado la cotización";
 		}
 		else{
 			include 'list_cotizaciones.php';
