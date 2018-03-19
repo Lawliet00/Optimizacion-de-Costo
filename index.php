@@ -43,7 +43,8 @@
 		</tr>
 		<tr>
 			<td >
-			  <input type='radio' value='Estampado' name="estampado0" id='estampado0' ></td> <td>  <input type='radio'  value='Bordado' name="bordado0" id='bordado0'>
+			  <input type='radio' value='Estampado' name="acabado0" id='estampado0' ></td> 
+			  <td>  <input type='radio'  value='Bordado' name="acabado0" id='bordado0'>
 			</td>
 			<td>
 			Hombro Derecho
@@ -60,7 +61,7 @@
 		</tr>
 		<tr>
 			<td >
-			  <input type='radio' value='Estampado' name="estampado1" id='estampado1' ></td> <td>  <input type='radio'  value='Bordado' name="bordado1" id='bordado1'>
+			  <input type='radio' value='Estampado' name="acabado1" id='estampado1' ></td> <td>  <input type='radio'  value='Bordado' name="acabado1" id='bordado1'>
 			</td>
 			<td>
 			Hombro Izquierdo 
@@ -76,7 +77,7 @@
 		</tr>
 		<tr>
 			<td >
-			  <input type='radio' value='Estampado' name="estampado2" id='estampado2' ></td> <td>  <input type='radio'  value='Bordado' name="bordado2" id='bordado2'>
+			  <input type='radio' value='Estampado' name="acabado2" id='estampado2' ></td> <td>  <input type='radio'  value='Bordado' name="acabado2" id='bordado2'>
 			</td>
 			<td>
 			Frente
@@ -91,7 +92,7 @@
 		</tr>
 			<tr>
 			<td >
-			  <input type='radio' value='Estampado' name="estampado3" id='estampado3' ></td> <td>  <input type='radio'  value='Bordado' name="bordado3" id='bordado3'>
+			  <input type='radio' value='Estampado' name="acabado3" id='estampado3' ></td> <td>  <input type='radio'  value='Bordado' name="acabado3" id='bordado3'>
 			</td>
 			<td>
 			Espalda
