@@ -1,2 +1,0 @@
-1) Se debe crear un bucle el cual permita ir acumulando el costo de cada acabado realizado a un solo sueter.
-2) Mostrar la informacion de cada uno de los acabados que tendra el sueter y su costo unitario.
